@@ -26,13 +26,13 @@
 // No direct access.
 defined('MOODLE_INTERNAL') || die();
 
-// This plugin requires Moodle 3.9.
-$plugin->requires = 2020061500;
+// This plugin requires Moodle 4.1.0.
+$plugin->requires = 2022112800;
 
 // Plugin details.
 $plugin->component = 'local_quizadditionalbehaviour';
-$plugin->version = 2022032405;
-$plugin->release = 'v3.9.5';
+$plugin->version = 2024031400.00;
+$plugin->release = 'v4.1.0';
 
 // Plugin status details.
 $plugin->maturity = MATURITY_STABLE;

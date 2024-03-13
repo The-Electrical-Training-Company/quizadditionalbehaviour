@@ -71,7 +71,7 @@ class quiz_attempt extends core_quiz_attempt {
                 $coursecontext = context_course::instance($this->get_courseid());
                 $hasstudentrole = user_has_role_assignment($USER->id, $studentroleid, $coursecontext->id);
                 $this->reviewoptions->truecorrectness = $this->reviewoptions->correctness;
-                $this->reviewoptions->correctness = $hasstudentrole;
+                $this->reviewoptions->correctness = !$hasstudentrole;
             }
         }
         return $this->reviewoptions;
@@ -182,7 +182,7 @@ class quiz_attempt extends core_quiz_attempt {
         return $output;
     }
 
-    public function process_finish($timestamp, $processsubmitted, $timefinish = null) {
+    public function process_finish($timestamp, $processsubmitted, $timefinish = null, $studentisonline = false) {
         // Do the overriden things.
         if ($this->disablecorrect()) {
             $qattempt = $this->get_last_complete_attempt();
@@ -295,10 +295,9 @@ class quiz_attempt extends core_quiz_attempt {
 
         $this->quba = local_question_engine::load_questions_usage_by_activity($this->attempt->uniqueid);
         $this->slots = $DB->get_records('quiz_slots',
-            ['quizid' => $this->get_quizid()], 'slot',
-            'slot, id, requireprevious, questionid, includingsubcategories');
+                array('quizid' => $this->get_quizid()), 'slot', 'slot, id, requireprevious');
         $this->sections = array_values($DB->get_records('quiz_sections',
-            ['quizid' => $this->get_quizid()], 'firstslot'));
+                array('quizid' => $this->get_quizid()), 'firstslot'));
 
         $this->link_sections_and_slots();
         $this->determine_layout();
