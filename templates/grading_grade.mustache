@@ -1,0 +1,37 @@
+<div class="clearfix comment">
+    <div data-region="grade{{questionno}}" data-questionno="{{questionno}}" data-slot="{{slot}}" data-attempt="{{attemptid}}">
+        <div data-region="commentbox">
+            {{#has_manual_comment}}
+                {{{manual_comment}}}
+            {{/has_manual_comment}}
+        </div>
+        {{#manualcommentlink}}
+            <a class="text-light btn btn-primary" id="showbutton" data-toggle="collapse" href="#collapseResponse{{questionno}}" aria-expanded="false" aria-controls="collapseResponse{{questionno}}">
+                {{#str}}commentormark, question{{/str}}
+            </a>
+            <form onsubmit="return false;">
+                <div class="collapse mt-2" id ="collapseResponse{{questionno}}">
+                    {{#has_grader_info}}
+                        <div class="graderinfo">
+                            {{{grader_info}}}
+                        </div>
+                    {{/has_grader_info}}
+                    <div class="card card-body">
+                        <div data-region="commenteditbox">
+                            {{{manual_comment_fields}}}
+                        </div>
+                        <div data-region="errormessagebox" class="text-danger mt-2 mb-2"></div>
+                        <div class="fitem fitem_actionbuttons fitem_fsubmit">
+                            <span type="button" id="submitbutton" class="btn btn-primary">{{#str}}save, quiz{{/str}}</span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        {{/manualcommentlink}}
+    </div>
+    {{#js}}
+        require(['local_quizadditionalbehaviour/custom_grading'], function(customGrading) {
+            new customGrading('[data-region="grade{{questionno}}"]');
+        });
+    {{/js}}
+</div>
