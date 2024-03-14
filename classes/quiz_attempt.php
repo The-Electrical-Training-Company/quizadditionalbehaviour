@@ -66,12 +66,18 @@ class quiz_attempt extends core_quiz_attempt {
                 $this->reviewoptions->attempt = true;
             }
 
-            if ($this->disableshowcorrectforstudent()) {
-                $studentroleid = $DB->get_field('role', 'id', ['shortname' => 'student']);
-                $coursecontext = context_course::instance($this->get_courseid());
-                $hasstudentrole = user_has_role_assignment($USER->id, $studentroleid, $coursecontext->id);
-                $this->reviewoptions->truecorrectness = $this->reviewoptions->correctness;
-                $this->reviewoptions->correctness = !$hasstudentrole;
+            if (!has_capability('local/quizadditionalbehaviour:ignorerestrictions')){
+                if ($this->disableshowcorrectforstudent() || $this->disableshowcorrectforall()) {
+                    $studentroleid = $DB->get_field('role', 'id', ['shortname' => 'student']);
+                    $coursecontext = context_course::instance($this->get_courseid());
+                    $hasstudentrole = user_has_role_assignment($USER->id, $studentroleid, $coursecontext->id);
+                    $this->reviewoptions->truecorrectness = $this->reviewoptions->correctness;
+                    if ($this->disableshowcorrectforstudent() && !$this->disableshowcorrectforall()) {
+                        $this->reviewoptions->correctness = !$hasstudentrole;
+                    } else if ($this->disableshowcorrectforall()) {
+                        $this->reviewoptions->correctness = false;
+                    }
+                }
             }
         }
         return $this->reviewoptions;
@@ -251,6 +257,10 @@ class quiz_attempt extends core_quiz_attempt {
 
     public function disableshowcorrectforstudent() {
         return (!empty($this->quizobj->get_quiz()->disableshowcorrectforstudent));
+    }
+
+    public function disableshowcorrectforall() {
+        return (!empty($this->quizobj->get_quiz()->disableshowcorrectforall));
     }
 
     public function get_last_complete_attempt() {
