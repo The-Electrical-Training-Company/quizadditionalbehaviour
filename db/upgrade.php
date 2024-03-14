@@ -26,10 +26,10 @@
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * Quiz module upgrade function.
+ * local_quizadditionalbehaviour upgrade function.
  * @param string $oldversion the version we are upgrading from.
  */
-function xmldb_quiz_upgrade($oldversion) {
+function xmldb_local_quizadditionalbehaviour_upgrade($oldversion) {
     global $CFG, $DB;
     $dbman = $DB->get_manager();
 

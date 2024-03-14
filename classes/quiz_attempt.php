@@ -66,7 +66,8 @@ class quiz_attempt extends core_quiz_attempt {
                 $this->reviewoptions->attempt = true;
             }
 
-            if (!has_capability('local/quizadditionalbehaviour:ignorerestrictions')){
+            $contextmodule = context_module::instance($this->get_cmid());
+            if (!has_capability('local/quizadditionalbehaviour:ignorerestrictions', $contextmodule)){
                 if ($this->disableshowcorrectforstudent() || $this->disableshowcorrectforall()) {
                     $studentroleid = $DB->get_field('role', 'id', ['shortname' => 'student']);
                     $coursecontext = context_course::instance($this->get_courseid());
