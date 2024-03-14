@@ -89,13 +89,11 @@ function xmldb_local_quizadditionalbehaviour_install() {
 
     // Define field granterid to be added to quiz_overrides.
     $fieldname = 'granterid';
-    $previousfield = 'userid';
+    $previousfield = 'password';
     $field = new xmldb_field($fieldname, XMLDB_TYPE_INTEGER, '10', null, null, null, null, $previousfield);
-    $key = new xmldb_key('granterid', XMLDB_KEY_FOREIGN, ['granterid'], 'user', ['id']);
 
     // Conditionally launch add field granterid.
     if (!$dbman->field_exists($table, $field)) {
         $dbman->add_field($table, $field);
-        $dbman->add_key($table, $key);
     }
 }
