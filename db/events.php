@@ -32,5 +32,21 @@ $observers = [
         'callback' => '\local_quizadditionalbehaviour\event\observer::quiz_attempt_submitted',
         // Run this after db transaction has been committed successfully.
         'internal' => false,
-    ]
+    ],
+    [
+        'eventname' => '\mod_quiz\event\user_override_created',
+        'callback' => '\local_quizadditionalbehaviour\event\observer::user_override_created',
+    ],
+    [
+        'eventname' => '\mod_quiz\event\user_override_updated',
+        'callback' => '\local_quizadditionalbehaviour\event\observer::user_override_created',
+    ],
+    [
+        'eventname' => '\mod_quiz\event\group_override_created',
+        'callback' => '\local_quizadditionalbehaviour\event\observer::user_override_created',
+    ],
+    [
+        'eventname' => '\mod_quiz\event\group_override_updated',
+        'callback' => '\local_quizadditionalbehaviour\event\observer::user_override_created',
+    ],
 ];

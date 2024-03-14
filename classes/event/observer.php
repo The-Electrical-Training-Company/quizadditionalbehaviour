@@ -30,6 +30,10 @@ defined('MOODLE_INTERNAL') || die();
 
 use mod_quiz\event\attempt_submitted;
 use local_quizadditionalbehaviour\quiz_attempt;
+use mod_quiz\event\user_override_created;
+use mod_quiz\event\user_override_updated;
+use mod_quiz\event\group_override_created;
+use mod_quiz\event\group_override_updated;
 
 class observer {
     public static function quiz_attempt_submitted(attempt_submitted $event) : void {
@@ -58,6 +62,26 @@ class observer {
             if ($thelastquizattempt[$slot]->correct) {
                 $quizattempt->manual_grade_question($slot, $commentstring, $thelastquizattempt[$slot]->maxMark, 1);
             }
+        }
+    }
+
+    public static function quiz_override_created($event) : void {
+        global $DB;
+
+        $override = array(
+            'id' => $event->objectid,
+            'granterid' => $event->userid
+        );
+
+        $validation = array(
+            'id' => $event->objectid,
+            'quiz' => $event->contextinstanceid,
+            'userid' => empty($event->relateduserid)? null : $event->relateduserid,
+            'groupid' => empty($event->other['groupid'])? null : $event->other['groupid']
+        );
+
+        if ($DB->record_exists('quiz_overrides', $validation)) {
+            $DB->update_record('quiz_overrides', $override);
         }
     }
 }
