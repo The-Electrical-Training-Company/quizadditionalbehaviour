@@ -65,7 +65,7 @@ class observer {
         }
     }
 
-    public static function quiz_override_created($event) : void {
+    public static function quiz_override_created(user_override_created $event) : void {
         global $DB;
 
         $override = array(
@@ -76,8 +76,8 @@ class observer {
         $validation = array(
             'id' => $event->objectid,
             'quiz' => $event->contextinstanceid,
-            'userid' => empty($event->relateduserid)? null : $event->relateduserid,
-            'groupid' => empty($event->other['groupid'])? null : $event->other['groupid']
+            'userid' => empty($event->relateduserid)? null : $event->relateduserid/* ,
+            'groupid' => empty($event->other['groupid'])? null : $event->other['groupid'] */
         );
 
         if ($DB->record_exists('quiz_overrides', $validation)) {
