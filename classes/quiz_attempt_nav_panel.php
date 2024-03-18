@@ -36,8 +36,8 @@ use quiz_attempt_nav_panel as core_quiz_attempt_nav_panel;
 class quiz_attempt_nav_panel extends core_quiz_attempt_nav_panel {
     public function get_question_buttons() {
         if (!$this->attemptobj->disablecorrect()
-         || !$this->attemptobj->disableshowcorrectforstudent()
-         || !$this->attemptobj->disableshowcorrectforall()) {
+         && !$this->attemptobj->disableshowcorrectforstudent()
+         && !$this->attemptobj->disableshowcorrectforall()) {
             // Do the core things.
             return parent::get_question_buttons();
         }
