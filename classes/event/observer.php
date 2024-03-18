@@ -64,26 +64,4 @@ class observer {
             }
         }
     }
-
-    public static function quiz_override_created($event) : void {
-        global $DB;
-
-        // Extract data from event, set 'granterid' to update db record.
-        $override = (object)[
-            'id' => $event->objectid,
-            'granterid' => $event->userid
-        ];
-
-        // Extract data from event to validate record exists before updating.
-        $validation = [
-            'id' => $event->objectid,
-            'userid' => empty($event->relateduserid)? null : $event->relateduserid,
-            'groupid' => empty($event->other['groupid'])? null : $event->other['groupid']
-        ];
-
-        // Validate record exists then update quiz_overrides record to include granterid.
-        if ($DB->record_exists('quiz_overrides', $validation)) {
-            $DB->update_record('quiz_overrides', $override);
-        }
-    }
 }
