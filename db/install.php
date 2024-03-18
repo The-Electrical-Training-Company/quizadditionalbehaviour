@@ -63,9 +63,19 @@ function xmldb_local_quizadditionalbehaviour_install() {
         $dbman->add_field($table, $field);
     }
 
+    // Define field disableshowcorrectforall to be added to quiz.
+    $fieldname = 'disableshowcorrectforall';
+    $previousfield = 'disableshowcorrectforstudent';
+    $field = new xmldb_field($fieldname, XMLDB_TYPE_INTEGER, '4', null, XMLDB_NOTNULL, null, '0', $previousfield);
+
+    // Conditionally launch add field disableshowcorrectforall.
+    if (!$dbman->field_exists($table, $field)) {
+        $dbman->add_field($table, $field);
+    }
+
     // Define field customgrading to be added to quiz.
     $fieldname = 'customgrading';
-    $previousfield = 'disableshowcorrectforstudent';
+    $previousfield = 'disableshowcorrectforall';
     $field = new xmldb_field($fieldname, XMLDB_TYPE_INTEGER, '4', null, XMLDB_NOTNULL, null, '0', $previousfield);
 
     // Conditionally launch add field customgrading.

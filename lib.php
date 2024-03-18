@@ -57,10 +57,17 @@ function local_quizadditionalbehaviour_coursemodule_standard_elements(\moodlefor
     $mform->setAdvanced('disablecorrectshowcorrect', $quizconfig->disablecorrectshowcorrect_adv);
     $mform->setDefault('disablecorrectshowcorrect', $quizconfig->disablecorrectshowcorrect);
 
-    // Disable showing the correct answer to the user.
+    // Disable showing the correct answer to the student.
     $visiblename = get_string('disableshowcorrectforstudent', 'local_quizadditionalbehaviour');
     $mform->addElement('selectyesno', 'disableshowcorrectforstudent', $visiblename);
     $mform->addHelpButton('disableshowcorrectforstudent', 'disableshowcorrectforstudent', 'local_quizadditionalbehaviour');
     $mform->setAdvanced('disableshowcorrectforstudent', $quizconfig->disableshowcorrectforstudent_adv);
     $mform->setDefault('disableshowcorrectforstudent', $quizconfig->disableshowcorrectforstudent);
+
+    // Disable showing the correct answer to all users.
+    $visiblename = get_string('disableshowcorrectforall', 'local_quizadditionalbehaviour');
+    $mform->addElement('selectyesno', 'disableshowcorrectforall', $visiblename);
+    $mform->addHelpButton('disableshowcorrectforall', 'disableshowcorrectforall', 'local_quizadditionalbehaviour');
+    $mform->setAdvanced('disableshowcorrectforall', $quizconfig->disableshowcorrectforall_adv);
+    $mform->setDefault('disableshowcorrectforall', $quizconfig->disableshowcorrectforall);
 }
