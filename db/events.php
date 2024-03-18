@@ -32,5 +32,5 @@ $observers = [
         'callback' => '\local_quizadditionalbehaviour\event\observer::quiz_attempt_submitted',
         // Run this after db transaction has been committed successfully.
         'internal' => false,
-    ]
+    ],
 ];

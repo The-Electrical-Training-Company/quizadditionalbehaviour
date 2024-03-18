@@ -30,6 +30,10 @@ defined('MOODLE_INTERNAL') || die();
 
 use mod_quiz\event\attempt_submitted;
 use local_quizadditionalbehaviour\quiz_attempt;
+use mod_quiz\event\user_override_created;
+use mod_quiz\event\user_override_updated;
+use mod_quiz\event\group_override_created;
+use mod_quiz\event\group_override_updated;
 
 class observer {
     public static function quiz_attempt_submitted(attempt_submitted $event) : void {

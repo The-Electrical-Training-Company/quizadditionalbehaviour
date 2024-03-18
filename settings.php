@@ -62,6 +62,13 @@ if ($hassiteconfig) {
         ['value' => 0, 'adv' => true]
     );
 
+    $settings[] = new admin_setting_configcheckbox_with_advanced(
+        'quiz/disableshowcorrectforall',
+        get_string('disableshowcorrectforall', $componentname),
+        get_string('disableshowcorrectforall_help', $componentname),
+        ['value' => 0, 'adv' => true]
+    );
+
     // Make the settings page and add all the settings.
     $settingspage = new admin_settingpage($componentname, get_string('pluginname', $componentname));
     foreach ($settings as $setting) {

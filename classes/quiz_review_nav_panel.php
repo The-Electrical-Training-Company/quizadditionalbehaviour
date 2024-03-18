@@ -35,7 +35,9 @@ use quiz_nav_section_heading;
 
 class quiz_review_nav_panel extends core_quiz_review_nav_panel {
     public function get_question_buttons() {
-        if (!$this->attemptobj->disablecorrect() || !$this->attemptobj->disableshowcorrectforstudent()) {
+        if (!$this->attemptobj->disablecorrect()
+         && !$this->attemptobj->disableshowcorrectforstudent()
+         && !$this->attemptobj->disableshowcorrectforall()) {
             // Do the core things.
             return parent::get_question_buttons();
         }
@@ -54,7 +56,7 @@ class quiz_review_nav_panel extends core_quiz_review_nav_panel {
 
             // We actually want the nav to to show correctness
             // So we preserve the old value here
-            if ($this->attemptobj->disableshowcorrectforstudent()) {
+            if ($this->attemptobj->disableshowcorrectforstudent() || $this->attemptobj->disableshowcorrectforall()) {
                 $showcorrectness = ($this->options->correctness || $this->options->truecorrectness) && $qa->has_marks();
             } else {
                 $showcorrectness = $this->options->correctness && $qa->has_marks();

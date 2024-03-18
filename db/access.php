@@ -15,24 +15,24 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version information for local_quizadditionalbehaviour.
+ * Capability definitions for local_quizadditionalbehaviour.
  *
  * @package     local_quizadditionalbehaviour
- * @author      Donald Barrett <donaldb@skills.org.nz>
- * @copyright   2022 onwards, Skills Consulting Group Ltd
+ * @author      Andrew Chandler <andrew.chandler@skills-group.org>
+ * @copyright   2024 onwards, Skills Consulting Group Ltd
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-// No direct access.
 defined('MOODLE_INTERNAL') || die();
 
-// This plugin requires Moodle 4.1.0.
-$plugin->requires = 2022112800;
+$capabilities = [
 
-// Plugin details.
-$plugin->component = 'local_quizadditionalbehaviour';
-$plugin->version = 2024031800;
-$plugin->release = 'v4.1.0';
-
-// Plugin status details.
-$plugin->maturity = MATURITY_STABLE;
+    // Ability to see 'correctness' regardless of setting.
+    'local/quizadditionalbehaviour:ignorerestrictions' => [
+        'captype' => 'read',
+        'contextlevel' => CONTEXT_MODULE,
+        'archetypes' => [
+            'manager' => CAP_ALLOW
+        ]
+    ],
+];

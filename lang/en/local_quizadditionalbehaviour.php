@@ -35,13 +35,16 @@ $string['customgrading'] = 'Quiz custom grading';
 $string['customgrading_help'] = 'Turns on quiz custom grading';
 
 $string['disablealreadycorrectquestions']                   = 'Prevent users from answering correctly answered questions from their previous attempt';
-$string['disablealreadycorrectquestions_help']              = 'Enabling this setting will prevent user\'s from answering any questions they have already answered correctly in their previous attempt';
+$string['disablealreadycorrectquestions_help']              = 'Enabling this setting will prevent users from answering any questions they have already answered correctly in their previous attempt';
 
 $string['disablealreadycorrectquestions_showcorrect']       = 'Show correct answer with disabled correct';
 $string['disablealreadycorrectquestions_showcorrect_help']  = 'Enabling this setting will show the users the correct answer for the question that was previously answered correctly';
 
 $string['disableshowcorrectforstudent']                     = 'Disable "Whether correct" for students';
 $string['disableshowcorrectforstudent_help']                = 'Prevents students from seeing specific question marks. For example the ticks for each choice in a multiple choice question';
+
+$string['disableshowcorrectforall']                         = 'Disable "Whether correct" for all users';
+$string['disableshowcorrectforall_help']                    = 'Prevents all users from seeing specific question marks. For example the ticks for each choice in a multiple choice question';
 
 // Question state strings.
 $string['previouslycompleted']                              = 'Previously Completed';
@@ -50,3 +53,6 @@ $string['alreadyansweredcorrectly']                         = 'Already answered 
 // Other strings.
 $string['manualgradecomment'] = 'Correct in previous attempt';
 $string['customgradingerror'] = 'There was an error in your input, please try again.';
+
+// Capability strings.
+$string['quizadditionalbehaviour:ignorerestrictions']       = 'Ignore restrictions on viewing specific question marks.';
