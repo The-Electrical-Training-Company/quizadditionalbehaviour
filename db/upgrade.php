@@ -33,7 +33,7 @@ function xmldb_local_quizadditionalbehaviour_upgrade($oldversion) {
     global $CFG, $DB;
     $dbman = $DB->get_manager();
 
-    if ($oldversion < 2024031400.01) {
+    if ($oldversion < 2024031801) {
 
         // Define field completionminattempts to be added to quiz.
         $table = new xmldb_table('quiz');
@@ -44,8 +44,6 @@ function xmldb_local_quizadditionalbehaviour_upgrade($oldversion) {
             $dbman->add_field($table, $field);
         }
 
-        // Quiz savepoint reached.
-        upgrade_mod_savepoint(true, 2024031400.01, 'quiz');
     }
 
     return true;
