@@ -141,7 +141,7 @@ class quiz_attempt extends core_quiz_attempt {
                 $displayoptions->passed = $qattempt[$slot]->correct;
 
                 // The settings have asked us to deploy the prev completed attempt question.
-                if (!empty($quiz->disablecorrectshowcorrect)) {
+                if (!empty($quiz->disablecorrect_showcorrect)) {
                     foreach ($userattempts as $key => $userattempt) {
                         $oldqattempt = new quiz_attempt($userattempt, $quiz, $coursemodule, $course);
                         $gradedright = $oldqattempt->quba->get_question_state($slot) == question_state::$gradedright;

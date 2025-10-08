@@ -8,6 +8,10 @@ and this project tries to adhere to [Semantic Versioning](https://semver.org/spe
 
 There is nothing that is unreleased
 
+## [Version 2024031802, release 4.1.0]
+### Fixed
+- disablecorrect_showcorrect in database was referenced as disablecorrectshowcorrect in code (no underscore_)
+
 ## [Version 2022032405, release v3.9.5]
 ### Added
 - Missing js stuff for custom grading
